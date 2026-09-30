@@ -35,22 +35,16 @@ jobs:
           mvn clean package -DskipTests
 
       - name: Build & Push Backend Docker Image
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPO_NAME: flight-spring-backend
         run: |
-          cd filght-booking-backend
-          docker build -f FLIGHT_BOOKING/Dockerfile -t \(REGISTRY/\)REPO_NAME:latest FLIGHT_BOOKING
-          docker push \(REGISTRY/\)REPO_NAME:latest
+          cd filght-booking-backend/FLIGHT_BOOKING
+          docker build -t ${{ steps.login-ecr.outputs.registry }}/flight-spring-backend:latest .
+          docker push ${{ steps.login-ecr.outputs.registry }}/flight-spring-backend:latest
 
       - name: Build & Push Frontend Docker Image
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPO_NAME: flight-react-frontend
         run: |
           cd Filght-booking-frontend
-          docker build -t \(REGISTRY/\)REPO_NAME:latest .
-          docker push \(REGISTRY/\)REPO_NAME:latest
+          docker build -t ${{ steps.login-ecr.outputs.registry }}/flight-react-frontend:latest .
+          docker push ${{ steps.login-ecr.outputs.registry }}/flight-react-frontend:latest
 
       - name: Deploy to EC2 via SSH
         uses: appleboy/ssh-action@master

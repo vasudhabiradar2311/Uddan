@@ -36,8 +36,8 @@ jobs:
 
       - name: Build & Push Backend Docker Image
         run: |
-          cd filght-booking-backend/FLIGHT_BOOKING
-          docker build -t ${{ steps.login-ecr.outputs.registry }}/flight-spring-backend:latest .
+          cd filght-booking-backend
+          docker build -f FLIGHT_BOOKING/Dockerfile -t ${{ steps.login-ecr.outputs.registry }}/flight-spring-backend:latest .
           docker push ${{ steps.login-ecr.outputs.registry }}/flight-spring-backend:latest
 
       - name: Build & Push Frontend Docker Image

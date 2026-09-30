@@ -1,0 +1,127 @@
+/* General Navbar Styling */
+.navbar {
+    background-color: #14254e; /* SafarEasy blue background */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  /* Logo Section */
+  .nav-logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .airplane-logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .college-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 1px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Links Section */
+  .nav-links {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-item {
+    margin: 0 15px;
+    font-size: 1.1rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  /* Hover Effect for Links */
+  .nav-item:hover {
+    color: #ffd700; /* Gold color on hover */
+  }
+  
+  /* Active Link Styling */
+  .nav-item:active {
+    color: #ff4500; /* Red color when clicked */
+  }
+  
+  /* Profile Section */
+  .profile-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-username {
+    color: white;
+    margin-right: 10px;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  
+  .profile-icon {
+    display: inline-block;
+    margin-right: 15px;
+  }
+  
+  .profile-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* Logout Button */
+  .logout-btn {
+    background-color: #dc3545; /* Red button for logout */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-btn:hover {
+    background-color: #c82333; /* Darker red on hover */
+  }
+  
+  /* Login Button */
+  .login-btn {
+    background-color: #28a745; /* Green button for login */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .nav-links {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .nav-item {
+      margin: 10px 0;
+    }
+  
+    .profile-section {
+      margin-top: 15px;
+    }
+  }
+  

@@ -31,7 +31,7 @@ jobs:
 
       - name: Build Spring Boot Jar
         run: |
-          cd filght-booking-backend/FLIGHT_BOOKING
+          cd filght-booking-backend
           mvn clean package -DskipTests
 
       - name: Build & Push Backend Docker Image
@@ -39,7 +39,7 @@ jobs:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPO_NAME: flight-spring-backend
         run: |
-          cd filght-booking-backend/FLIGHT_BOOKING
+          cd filght-booking-backend
           docker build -t \(REGISTRY/\)REPO_NAME:latest .
           docker push \(REGISTRY/\)REPO_NAME:latest
 

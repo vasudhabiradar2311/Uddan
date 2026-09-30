@@ -31,7 +31,7 @@ jobs:
 
       - name: Build Spring Boot Jar
         run: |
-          cd filght-booking-backend/FLIGHT_BOOKING
+          cd flight-booking-backend/FLIGHT_BOOKING
           mvn clean package -DskipTests
 
       - name: Build & Push Backend Docker Image
@@ -39,18 +39,18 @@ jobs:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPO_NAME: flight-spring-backend
         run: |
-          cd filght-booking-backend/FLIGHT_BOOKING
-          docker build -t $REGISTRY/$REPO_NAME:latest .
-          docker push $REGISTRY/$REPO_NAME:latest
+          cd flight-booking-backend/FLIGHT_BOOKING
+          docker build -t \(REGISTRY/\)REPO_NAME:latest .
+          docker push \(REGISTRY/\)REPO_NAME:latest
 
       - name: Build & Push Frontend Docker Image
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPO_NAME: flight-react-frontend
         run: |
-          cd filght-booking-frontend
-          docker build -t $REGISTRY/$REPO_NAME:latest .
-          docker push $REGISTRY/$REPO_NAME:latest
+          cd flight-booking-frontend
+          docker build -t \(REGISTRY/\)REPO_NAME:latest .
+          docker push \(REGISTRY/\)REPO_NAME:latest
 
       - name: Deploy to EC2 via SSH
         uses: appleboy/ssh-action@master
@@ -59,9 +59,9 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            aws ecr get-login-password --region ${{ secrets.AWS_REGION }} \vert{} docker login --username AWS --password-stdin${{ steps.login-ecr.outputs.registry }}
+            aws ecr get-login-password --region \({{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin\){{ steps.login-ecr.outputs.registry }}
             docker pull ${{ steps.login-ecr.outputs.registry }}/flight-spring-backend:latest
             docker pull ${{ steps.login-ecr.outputs.registry }}/flight-react-frontend:latest
-            cd /home/ubuntu/Filght-booking-master
+            cd /home/ubuntu/Uddan
             docker compose down
             docker compose up -d
